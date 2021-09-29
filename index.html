@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+	<title>Map Creator</title>
+	<link href="style.css" rel="stylesheet" type="text/css" />
+	<script src="https://cdn.jsdelivr.net/npm/p5@1.3.1/lib/p5.js">
+	</script>
+</head>
+
+<body>
+	<h1>Map Creation Tool</h1>
+	<div id="literallyEverything">
+		<div id="settings">
+			<span>width: </span>
+			<input type=number id="widthInp" name="width input" min="1" max="50" value="10"> 
+			<br>
+			<span>height: </span>
+			<input type=number id="heightInp" name="height input" min="1" max="50" value="10"> 
+			<!-- <br> -->
+			<input type=button id="apply" value="apply" onclick="readSet();">
+			<br>
+			<span>index: </span>
+			<input type=number id="index" name="index input" min="1" max="7" value="1"> 
+			<input type=button id="indexApply" value="set index" onclick="changeIndex();">
+			<br>
+			<input type=button id="exportData" value="export" onclick="exportData();">
+			<input type=button id="importData" value="import" onclick="importData();">
+		</div>
+		<table id="importExport">
+			<tr>
+				<th><span>export</span></th>
+				<th><span>import</span></th>
+			</tr>
+			<tr>
+				<th><textarea id="exportOutput" readonly="true" onclick="this.focus();this.select()" height="200px"></textarea></th>
+				<th><textarea id="importInput"></textarea></th>
+			</tr>
+		</table>
+		<div id="key">
+			<table>
+				<tr>
+					<th>1</th>
+				</tr>
+				<tr>
+					<!-- TODO: in the future, these keys should be generated after an index is used, and the color would be random for each new key -->
+					<th><span class="box" style="background: blue;" onclick="changeIndex(1);"></span></th>
+				</tr>
+			</table>
+		</div>
+	</div>
+<script src="script.js"></script>
+</body>
+</html>
