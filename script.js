@@ -7,6 +7,7 @@ var inpColor = 1;
 var selectedCol = "blue";
 
 //this is for the random colors to save to in the future
+//sus
 var colorDict = {
 	1: '#0000FF',
 };
