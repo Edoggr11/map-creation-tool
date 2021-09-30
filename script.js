@@ -42,23 +42,33 @@ function changeIndex(num) {
 
 	if (!colorDict[inpColor]){
 		colorDict[inpColor] = setRandomColor(inpColor);
-		console.log('suzk xdess 1');
 		selectedCol = colorDict[inpColor];
+
+		spawnKeys(inpColor);
 
 	} else if (colorDict[inpColor]) {
 		selectedCol = colorDict[inpColor];
-		console.log(colorDict[inpColor], "sussy balls");
 	}
-
 	selectedCol = colorDict[inpColor];
-	console.log(selectedCol);
+	console.log(selectedCol);	
+}
 
-	
+function spawnKeys(input) {
+	var th = document.createElement("th");
+	document.getElementById("colorNumber").appendChild(th);
+	th.textContent = input;
+
+	var colorBox = document.createElement("th");
+	var colorBoxSpan = document.createElement("span");
+	document.getElementById("colorDisplay").appendChild(colorBox);
+	colorBox.appendChild(colorBoxSpan);
+	colorBoxSpan.setAttribute("class", "box");
+	colorBoxSpan.setAttribute("style", "background: " + colorDict[input] + ";");
+	colorBoxSpan.setAttribute("onClick", "changeIndex(" + input + ");");
 }
 
 function setRandomColor(seed) {
 	return "#" + Math.floor((Math.abs(Math.sin(seed) * 16777215)) % 16777215).toString(16);
-
 }
 
 function exportData() {
@@ -78,13 +88,16 @@ function importData() {
 	
 	var localColor;
 
-	// console.log("size: ", collumns, rows);
 	createCanvas(collumns * cellSize, rows * cellSize);
 	loop();
 
 	for (var i = 0; i < rows; i++){
 		for (var m = 0; m < collumns; m++){
 			if (array[i][m] != 0){
+				if (!colorDict[array[i][m]]) {
+					colorDict[array[i][m]] = setRandomColor(array[i][m]);
+					spawnKeys(array[i][m]);
+				}
 				localColor = colorDict[array[i][m]];
 				fill(localColor);
 				rect(m * cellSize, i * cellSize, cellSize, cellSize);
@@ -95,41 +108,30 @@ function importData() {
 }
 
 function setup() {
-
 	for (let element of document.getElementsByClassName("p5Canvas")) {
     	element.addEventListener("contextmenu", (e) => e.preventDefault());
 	}
-
 	noLoop();
 	background(255);
 	stroke(1);
 	noFill();
-
 }
 
 function draw() {
 	for (var i = 0; i < collumns; i++) {
-
 		for (var m = 0; m < rows; m++) {
-
 			var x = i * cellSize;
 			var y = m * cellSize;
-
 			rect(x, y, cellSize, cellSize);
-
 		}
 	}
 	if (mouseIsPressed && mouseX <= width - 1 && mouseX >= 0 && mouseY <= height - 1 && mouseY >= 0) {
-
 		if (mouseButton === LEFT) {
 			mouseDet(selectedCol, inpColor);
-
 		} else if (mouseButton === RIGHT) {
 			mouseDet(255, 0);
-
 		} else {
 			console.log("[mouse] tf u doin lmao");
-
 		}
 	}
 }
@@ -142,7 +144,5 @@ function mouseDet(color, index) {
 	var xIndex = Math.floor((mouseX - (mouseX % cellSize)) / cellSize);
 	var yIndex = Math.floor((mouseY - (mouseY % cellSize)) / cellSize);
 	
-	// console.log(yIndex, xIndex);
 	array[yIndex][xIndex] = index;
-	// console.log(array);
 }

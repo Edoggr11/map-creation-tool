@@ -22,7 +22,7 @@
 			<input type=button id="apply" value="apply" onclick="readSet();">
 			<br>
 			<span>index: </span>
-			<input type=number id="index" name="index input" min="1" max="7" value="1"> 
+			<input type=number id="index" name="index input" min="1" max="50" value="1"> 
 			<input type=button id="indexApply" value="set index" onclick="changeIndex();">
 			<br>
 			<input type=button id="exportData" value="export" onclick="exportData();">
@@ -40,11 +40,10 @@
 		</table>
 		<div id="key">
 			<table>
-				<tr>
+				<tr id="colorNumber">
 					<th>1</th>
 				</tr>
-				<tr>
-					<!-- TODO: in the future, these keys should be generated after an index is used, and the color would be random for each new key -->
+				<tr id="colorDisplay">
 					<th><span class="box" style="background: blue;" onclick="changeIndex(1);"></span></th>
 				</tr>
 			</table>
