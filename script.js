@@ -89,7 +89,7 @@ function exportData() {
 		
 		for (i = 0; i < Object.keys(spriteDict).length; i++) {
 			var text;
-			text = "new Pseudo3D.Sprite(" + spriteNums[spriteDict[i][2]] + ", [" + spriteDict[i][0] + ", " + spriteDict[i][1] + "]),";
+			text = "new Pseudo3D.Sprite(" + spriteNums[spriteDict[i][2]] + ", [" + Math.round(spriteDict[i][0])/cellSize + ", " + Math.round(spriteDict[i][1])/cellSize + "]),";
 			console.log(text);
 			
 			document.getElementById('exportOutput').value += text + '\n';
@@ -241,7 +241,7 @@ function mouseReleased() {
 			} else {
 				spriteDict[lowestSpriteDict] = [mouseX, mouseY, getKeyByValue(spriteNums, selectedSprite)];
 			}
-			console.log(lowestSpriteDict, spriteDict[lowestSpriteDict]);
+			// console.log(lowestSpriteDict, spriteDict[lowestSpriteDict]);
 		}
 	}
 }
