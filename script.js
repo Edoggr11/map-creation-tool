@@ -90,10 +90,13 @@ function exportData() {
 		for (i = 0; i < Object.keys(spriteDict).length; i++) {
 			var text;
 			text = "new Pseudo3D.Sprite(" + spriteNums[spriteDict[i][2]] + ", [" + Math.round(spriteDict[i][0])/cellSize + ", " + Math.round(spriteDict[i][1])/cellSize + "]),";
-			console.log(text);
+			// console.log(text);
 			
-			document.getElementById('exportOutput').value += text + '\n';
+			document.getElementById('exportOutput').value += text;
 		}
+
+		var existingExportText = document.getElementById('exportOutput').value;
+		document.getElementById('exportOutput').value = '[' + existingExportText + '], ';
 		
 	} else {
 		document.getElementById('exportOutput').value = JSON.stringify(array);
@@ -164,6 +167,9 @@ function setup() {
 	noFill();
 }
 
+
+var spriteModeToolTip = document.getElementById('spriteModeToolTip');
+
 function draw() {
 
 	// remove sprite dots when not in spritemode
@@ -197,6 +203,12 @@ function draw() {
 	// run the spritemode
 	if (spriteMode) {
 		runSpriteMode();
+	}
+
+	if (spriteMode === false) {
+		spriteModeToolTip.style.display='none';
+	} else {
+		spriteModeToolTip.style.display='';
 	}
 }
 
