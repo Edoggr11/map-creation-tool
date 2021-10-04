@@ -9,6 +9,10 @@ div#settings > * {
 	margin: 1px;
 }
 
+body {
+	font-family: sans-serif;
+}
+
 #importExport {
 	display: inline-block;
 }

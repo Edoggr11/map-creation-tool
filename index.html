@@ -5,7 +5,7 @@
 	<meta name="viewport" content="width=device-width">
 	<title>Map Creator</title>
 	<link href="style.css" rel="stylesheet" type="text/css" />
-	<script src="https://cdn.jsdelivr.net/npm/p5@1.3.1/lib/p5.js">
+	<script src="p5.min.js">
 	</script>
 </head>
 
@@ -14,19 +14,24 @@
 	<div id="literallyEverything">
 		<div id="settings">
 			<span>width: </span>
-			<input type=number id="widthInp" name="width input" min="1" max="50" value="10"> 
+			<input type=number id="widthInp" name="width input" min="1" max="50" value="10">
 			<br>
 			<span>height: </span>
-			<input type=number id="heightInp" name="height input" min="1" max="50" value="10"> 
+			<input type=number id="heightInp" name="height input" min="1" max="50" value="10">
 			<!-- <br> -->
 			<input type=button id="apply" value="apply" onclick="readSet();">
 			<br>
 			<span>index: </span>
-			<input type=number id="index" name="index input" min="1" max="50" value="1"> 
+			<input type=number id="index" name="index input" min="1" max="50" value="1">
 			<input type=button id="indexApply" value="set index" onclick="changeIndex();">
+			<br>
+			<span>sprite: </span>
+			<input type=text id="sprite" name="sprite name input" value="barrel" style="width: 100px;">
+			<input type=button id="spriteApply" value="set sprite" onclick="setActiveSprite();">
 			<br>
 			<input type=button id="exportData" value="export" onclick="exportData();">
 			<input type=button id="importData" value="import" onclick="importData();">
+			<input type=button id="spriteModeToggle" value="toggle spritemode" onclick="spriteMode=!spriteMode;console.log(spriteMode)">
 		</div>
 		<table id="importExport">
 			<tr>
@@ -49,6 +54,8 @@
 			</table>
 		</div>
 	</div>
+	<br>
+	<span style="font-size: 0.8em">hold control to snap sprites to grid</span>
 <script src="script.js"></script>
 </body>
 </html>
