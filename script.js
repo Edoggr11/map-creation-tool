@@ -100,12 +100,14 @@ function spawnKeys(input) {
 function spawnSpriteKeys(input) {
     var th = document.createElement('th');
     document.getElementById('spriteColorNumber').appendChild(th);
+    th.setAttribute('class', 'spawned');
     th.textContent = +input + 1;
 
     var colorOrb = document.createElement('th');
     var colorOrbSpan = document.createElement('span');
     document.getElementById('spriteColorDisplay').appendChild(colorOrb);
     colorOrb.appendChild(colorOrbSpan);
+    colorOrb.setAttribute('class', 'spawned');
     colorOrbSpan.setAttribute('class', 'circle');
     colorOrbSpan.setAttribute('style', 'background: ' + setRandomColor(input - 600) + ';');
     colorOrbSpan.setAttribute('onClick', 'setActiveSprite(' + input + ');');
@@ -192,7 +194,10 @@ function importData() {
 
         }
 
-        var spriteNums = {0: 'barrel'};
+        spriteNums = {0: 'barrel'};
+
+        document.querySelectorAll('.spawned').forEach(e => e.remove());
+
         spriteDict = {};
 
         console.log(importSpritesArray);
@@ -210,6 +215,7 @@ function importData() {
 
             spriteDict[lowestSpriteDict] = [importSpritesArray[i][1][1] * cellSize, importSpritesArray[i][1][0] * cellSize, getKeyByValue(spriteNums, importSpritesArray[i][0])];
         }
+        console.log(spriteNums);
     }
 }
 
