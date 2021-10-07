@@ -123,7 +123,7 @@ function exportData() {
 
         for (let i = 0; i < Object.keys(spriteDict).length; i++) {
             var text;
-            text = "new Pseudo3D.Sprite(" + spriteNums[spriteDict[i][2]] + ", [" + Math.round(spriteDict[i][0]) / cellSize + ", " + Math.round(spriteDict[i][1]) / cellSize + "]),";
+            text = "new Pseudo3D.Sprite(" + spriteNums[spriteDict[i][2]] + ", [" + Math.round(spriteDict[i][1]) / cellSize + ", " + Math.round(spriteDict[i][0]) / cellSize + "]),";
             // console.log(text);
 
             document.getElementById('exportOutput').value += text;
@@ -192,8 +192,10 @@ function importData() {
 
         }
 
-        spriteNums = {};
+        var spriteNums = {0: 'barrel'};
         spriteDict = {};
+
+        console.log(importSpritesArray);
 
         for (let i = 0; i < importSpritesArray.length; i++) {
             var lowestSpriteDict = findLowestUnused(spriteDict);
@@ -203,9 +205,10 @@ function importData() {
             if (!getKeyByValue(spriteNums, importSpritesArray[i][0])) {
                 console.log('new sprite color');
                 spriteNums[lowestSpriteNums] = importSpritesArray[i][0];
+                spawnSpriteKeys(getKeyByValue(spriteNums, importSpritesArray[i][0]));
             }
 
-            spriteDict[lowestSpriteDict] = [importSpritesArray[i][1][0] * cellSize, importSpritesArray[i][1][1] * cellSize, getKeyByValue(spriteNums, importSpritesArray[i][0])];
+            spriteDict[lowestSpriteDict] = [importSpritesArray[i][1][1] * cellSize, importSpritesArray[i][1][0] * cellSize, getKeyByValue(spriteNums, importSpritesArray[i][0])];
         }
     }
 }
@@ -376,13 +379,13 @@ function mouseReleased() {
             // loop thru the existing sprite names and set them to false in the usedColorDict dictionary
             for (let i = 0; i < Object.keys(spriteNums).length; i++) {
 
-            	// creates a key of the current sprite name, and then sets it to false
-            	usedColorDict[spriteNums[i]] = false;
+                // creates a key of the current sprite name, and then sets it to false
+                usedColorDict[spriteNums[i]] = false;
             }
 
             // loops thru existing sprites and sets the sprite names that have been used to true
             for (let i = 0; i < Object.keys(spriteDict).length; i++) {
-            		usedColorDict[spriteNums[spriteDict[i][2]]] = true; 
+                    usedColorDict[spriteNums[spriteDict[i][2]]] = true; 
             }
 
             // gets the lowest empty slot in the spritNums dictionary
@@ -395,11 +398,11 @@ function mouseReleased() {
             // this makes me think i intended to have this be in the loop
 
             while (deletionVar) {
-            	delete spriteNums[deletionVar];
+                delete spriteNums[deletionVar];
             }
 
             for (let i = deletionVar; i < lowestSpriteNums-1; i++) {
-            	spriteNums[i] = spriteNums[i+1];
+                spriteNums[i] = spriteNums[i+1];
             }
 
             delete spriteNums[lowestSpriteNums-1];
