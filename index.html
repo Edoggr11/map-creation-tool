@@ -1,61 +1,97 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width">
-	<title>Map Creator</title>
-	<link href="style.css" rel="stylesheet" type="text/css" />
-	<script src="p5.min.js">
-	</script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Map Creator</title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+    <script src="p5.min.js">
+    </script>
 </head>
 
 <body>
-	<h1>Map Creation Tool</h1>
-	<div id="literallyEverything">
-		<div id="settings">
-			<span>width: </span>
-			<input type=number id="widthInp" name="width input" min="1" max="50" value="10">
-			<br>
-			<span>height: </span>
-			<input type=number id="heightInp" name="height input" min="1" max="50" value="10">
-			<!-- <br> -->
-			<input type=button id="apply" value="apply" onclick="readSet();">
-			<br>
-			<span>index: </span>
-			<input type=number id="index" name="index input" min="1" max="50" value="1">
-			<input type=button id="indexApply" value="set index" onclick="changeIndex();">
-			<br>
-			<span>sprite: </span>
-			<input type=text id="sprite" name="sprite name input" value="barrel" style="width: 100px;">
-			<input type=button id="spriteApply" value="set sprite" onclick="setActiveSprite();">
-			<br>
-			<input type=button id="exportData" value="export" onclick="exportData();">
-			<input type=button id="importData" value="import" onclick="importData();">
-			<input type=button id="spriteModeToggle" value="toggle spritemode" onclick="spriteMode=!spriteMode">
-		</div>
-		<table id="importExport">
-			<tr>
-				<th><span>export</span></th>
-				<th><span>import</span></th>
-			</tr>
-			<tr>
-				<th><textarea id="exportOutput" readonly="true" onclick="this.focus();this.select()" height="200px"></textarea></th>
-				<th><textarea id="importInput"></textarea></th>
-			</tr>
-		</table>
-		<div id="key">
-			<table>
-				<tr id="colorNumber">
-					<th>1</th>
-				</tr>
-				<tr id="colorDisplay">
-					<th><span class="box" style="background: blue;" onclick="changeIndex(1);"></span></th>
-				</tr>
-			</table>
-		</div>
-	</div>
-	<br>
-	<span style="font-size: 0.8em" id="spriteModeToolTip">hold control to snap sprites to grid</span>
-<script src="script.js"></script>
+    <h1>Map Creation Tool</h1>
+    <div id="literallyEverything">
+        <table>
+            <tr>
+                <th>
+                    <div id="settings">
+                        <span>width: </span>
+                        <input type=number id="widthInp" name="width input" min="1" max="50" value="10">
+                        <br>
+                        <span>height: </span>
+                        <input type=number id="heightInp" name="height input" min="1" max="50" value="10">
+                        <!-- <br> -->
+                        <input type=button id="apply" value="apply" onclick="readSet();">
+                        <br>
+                        <span>index: </span>
+                        <input type=number id="index" name="index input" min="1" max="50" value="1">
+                        <input type=button id="indexApply" value="set index" onclick="changeIndex();">
+                        <br>
+                        <span>sprite: </span>
+                        <input type=text id="sprite" name="sprite name input" value="barrel" style="width: 100px;">
+                        <input type=button id="spriteApply" value="set sprite" onclick="setActiveSprite();">
+                        <br>
+                        <input type=button id="exportData" value="export" onclick="exportData();">
+                        <input type=button id="importData" value="import" onclick="importData();">
+                        <input type=button id="spriteModeToggle" value="toggle spritemode" onclick="spriteMode=!spriteMode">
+                    </div>
+                </th>
+                <th>
+                    <table id="importExport">
+                        <tr>
+                            <th><span>export</span></th>
+                        </tr>
+                        <tr>
+                            <th><textarea id="exportOutput" readonly="true" onclick="this.focus();this.select()" height="200px"></textarea></th>
+                        </tr>
+                        <tr>
+                            <th><span>import</span></th>
+                        </tr>
+                        <tr>
+                            <th><textarea id="importInput"></textarea></th>
+                        </tr>
+                    </table>
+                </th>
+                <th>
+                    <table>
+                        <tr>
+                            <th>
+                                <div id="key">
+                                    <table>
+                                        <tr id="colorNumber">
+                                            <th>1</th>
+                                        </tr>
+                                        <tr id="colorDisplay">
+                                            <th><span class="box" style="background: blue;" onclick="changeIndex(1);"></span></th>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </th>
+                        </tr>
+                        <tr>
+                            <th>
+                                <div id="spriteKey">
+                                    <table>
+                                        <tr id="spriteColorNumber">
+                                            <th>1</th>
+                                        </tr>
+                                        <tr id="spriteColorDisplay">
+                                            <th><span class="circle" style="background: white;" onclick="setActiveSprite(0);"></span></th>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </th>
+                        </tr>
+                    </table>
+                </th>
+            </tr>
+        </table>
+    </div>
+    <br>
+    <span style="font-size: 0.8em" id="spriteModeToolTip">hold control to snap sprites to grid</span>
+    <script src="script.js"></script>
 </body>
+
 </html>
